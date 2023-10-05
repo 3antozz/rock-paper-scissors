@@ -8,6 +8,129 @@
 <body>
     <script>
         console.log("Hello World!");
+        let winner;
+        let playerScore = 0;
+        let computerScore = 0;
+        game ();
+
+        // - create a function that will randomly return either rock paper or scissors.
+        // - function returns the choice
+        function getComputerChoice () {
+            const picks = ["rock", "paper", "scissors"];
+            const computerChoice = Math.floor(Math.random() * picks.length);
+            return picks[computerChoice];
+        }
+        
+
+        // - write a function that plays a single round of rock paper scissors, it takes 2 parameters (playerSelection and computerSelection)
+        // - return a string that declares the winner.
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection ==="rock") {
+                if (computerSelection === "rock") {
+                    console.log("it's a tie!");
+                    return winner = "tie"
+                }
+                else if (computerSelection === "paper") {
+                    console.log("You lose! Paper beats Rock");
+                    return winner = "computer";
+                }
+                else if (computerSelection === "scissors") {
+                    console.log("You win! Rock beats Scissors");
+                    return winner = "player";
+                }
+                else {
+                    console.log("Choose either: rock, paper or scissors");
+                }
+            }
+            if (playerSelection === "paper") {
+                if (computerSelection === "paper") {
+                    console.log("it's a tie!");
+                    return winner = "tie"
+                }
+                else if (computerSelection === "scissors") {
+                    console.log("You lose! scissors beats paper");
+                    return winner = "computer";
+                }
+                else if (computerSelection === "rock") {
+                    console.log("You win! Paper beats Rock");
+                    return winner = "player";
+                }
+                else {
+                    console.log("Choose either: rock, paper or scissors");
+                }
+            }
+            if (playerSelection === "scissors") {
+                if (computerSelection === "scissors") {
+                    console.log("it's a tie!");
+                    return winner = "tie"
+                }
+                else if (computerSelection === "rock") {
+                    console.log("You lose! Rock beats Scissors");
+                    return winner = "computer";
+                }
+                else if (computerSelection === "paper") {
+                    console.log("You win! Scissors beats Paper");
+                    return winner = "player";
+                }
+            }
+        }
+        // - prompt the user to choose rock paper or scissors.
+        // - compare user input with computer's choice and declare the winner.
+
+        // - write a new function that uses the previous function to play 5 round game that keeps score and reports a winner or loser at the end.
+        function game() {
+            while (computerScore != 3 && playerScore != 3){
+                playerSelection = prompt ("rock, paper or scissors ?");
+                if (playerSelection === null) {
+                    game ();
+                }
+                else {
+                    playerSelection = playerSelection.toLowerCase();
+                const computerSelection = getComputerChoice();
+                if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
+                    game();
+                }
+                
+                else {
+                    
+                    playRound(playerSelection, computerSelection);
+                if (winner === "player") {
+                    playerScore++;
+                    console.log ("Player " + playerScore + ":" + computerScore + " Computer");
+                }
+                else if (winner === "computer") {
+                    computerScore++;
+                    console.log ("Player " + playerScore + ":" + computerScore + " Computer");
+                }
+                else {
+                    console.log ("Player " + playerScore + ":" + computerScore + " Computer");
+                }
+                 
+            if (computerScore === 3 || playerScore === 3) {
+                if (computerScore > playerScore) {
+                    console.log ("Computer wins!");
+                }
+                else {
+                    console.log ("Congratulations! You win!");
+                }
+            }
+                }
+                
+        }
+
+                }
+                
+    }
+
+
+
+
+
+
+
+
+
+
     </script>
     
 </body>
