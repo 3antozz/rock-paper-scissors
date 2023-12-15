@@ -6,12 +6,40 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="buttons">
+        <button class="btn" id="rock">Rock</button>
+        <button class="btn" id="paper">Paper</button>
+        <button class="btn" id="scissors">Scissors</button>
+    </div>
+    <div class="results"></div>
+
     <script>
         console.log("Hello World!");
         let winner;
         let playerScore = 0;
         let computerScore = 0;
-        game ();
+        let playerSelection;
+        const buttons = document.querySelector(".buttons");
+        buttons.addEventListener("click", (event) => {
+                    switch (event.target.id) {
+                        case "rock":
+                            playerSelection = "rock";
+                            break;
+                        case "paper":
+                            playerSelection = "paper";
+                            break;
+                        case "scissors":
+                            playerSelection = "scissors";
+                            break;
+                    }
+                    console.log("You chose: " + playerSelection);
+                    game ();
+                    return playerSelection;
+
+
+                })
+        // const buttons = document.querySelectorAll(".btn");
+        // console.log(buttons);
 
         // - create a function that will randomly return either rock paper or scissors.
         // - function returns the choice
@@ -23,6 +51,7 @@
         
 
         // - write a function that plays a single round of rock paper scissors, it takes 2 parameters (playerSelection and computerSelection)
+        // - compare user input with computer's choice and declare the winner.
         // - return a string that declares the winner.
         function playRound(playerSelection, computerSelection) {
             if (playerSelection ==="rock") {
@@ -75,25 +104,27 @@
             }
         }
         // - prompt the user to choose rock paper or scissors.
-        // - compare user input with computer's choice and declare the winner.
 
         // - write a new function that uses the previous function to play 5 round game that keeps score and reports a winner or loser at the end.
         function game() {
-            while (computerScore != 3 && playerScore != 3){
-                playerSelection = prompt ("rock, paper or scissors ?");
-                if (playerSelection === null) {
-                    game ();
-                }
-                else {
-                    playerSelection = playerSelection.toLowerCase();
-                const computerSelection = getComputerChoice();
-                if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
-                    game();
-                }
+            let computerSelection = getComputerChoice();
+            console.log("The computer chose: " + computerSelection );
+            if (computerScore != 3 && playerScore != 3){
+
+                // playerSelection = prompt ("rock, paper or scissors ?");
+                // if (playerSelection === null) {
+                //     game ();
+                // }
+                // else {
+                //     playerSelection = playerSelection.toLowerCase();
+
+                // if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
+                //     game();
+                // }
                 
-                else {
+                // else {
                     
-                    playRound(playerSelection, computerSelection);
+                playRound(playerSelection, computerSelection);
                 if (winner === "player") {
                     playerScore++;
                     console.log ("Player " + playerScore + ":" + computerScore + " Computer");
@@ -113,14 +144,15 @@
                 else {
                     console.log ("Congratulations! You win!");
                 }
+                computerScore = 0;
+                playerScore = 0;
             }
-                }
+                // }
                 
         }
 
                 }
                 
-    }
 
 
 
