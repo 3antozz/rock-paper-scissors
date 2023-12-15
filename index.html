@@ -11,7 +11,7 @@
         <button class="btn" id="paper">Paper</button>
         <button class="btn" id="scissors">Scissors</button>
     </div>
-    <div class="results"></div>
+    <div class="resultsTxt"></div>
 
     <script>
         console.log("Hello World!");
@@ -20,6 +20,14 @@
         let computerScore = 0;
         let playerSelection;
         const buttons = document.querySelector(".buttons");
+        let resultsContainer = document.querySelector(".resultsTxt");
+        let playerChoice = document.createElement("div");
+        let computerChoice = document.createElement("div");
+        let roundDecision = document.createElement("div");
+        let score = document.createElement("div");
+        let matchResult = document.createElement("div");
+        score.textContent = "You " + playerScore + ":" + computerScore + " Computer";
+        resultsContainer.appendChild(score);
         buttons.addEventListener("click", (event) => {
                     switch (event.target.id) {
                         case "rock":
@@ -34,6 +42,9 @@
                     }
                     console.log("You chose: " + playerSelection);
                     game ();
+                    playerChoice.textContent = "";
+                    playerChoice.textContent += "You chose: " + playerSelection;
+                    resultsContainer.insertBefore(playerChoice, roundDecision);
                     return playerSelection;
 
 
@@ -57,48 +68,60 @@
             if (playerSelection ==="rock") {
                 if (computerSelection === "rock") {
                     console.log("it's a tie!");
+                    roundDecision.textContent = "it's a tie!";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "tie"
                 }
                 else if (computerSelection === "paper") {
                     console.log("You lose! Paper beats Rock");
+                    roundDecision.textContent = "You lose! Paper beats Rock";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "computer";
                 }
                 else if (computerSelection === "scissors") {
                     console.log("You win! Rock beats Scissors");
+                    roundDecision.textContent = "You win! Rock beats Scissors";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "player";
-                }
-                else {
-                    console.log("Choose either: rock, paper or scissors");
                 }
             }
             if (playerSelection === "paper") {
                 if (computerSelection === "paper") {
                     console.log("it's a tie!");
+                    roundDecision.textContent = "it's a tie!";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "tie"
                 }
                 else if (computerSelection === "scissors") {
                     console.log("You lose! scissors beats paper");
+                    roundDecision.textContent = "You lose! scissors beats paper";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "computer";
                 }
                 else if (computerSelection === "rock") {
                     console.log("You win! Paper beats Rock");
+                    roundDecision.textContent = "You win! Paper beats Rock";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "player";
-                }
-                else {
-                    console.log("Choose either: rock, paper or scissors");
                 }
             }
             if (playerSelection === "scissors") {
                 if (computerSelection === "scissors") {
                     console.log("it's a tie!");
+                    roundDecision.textContent = "it's a tie!";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "tie"
                 }
                 else if (computerSelection === "rock") {
                     console.log("You lose! Rock beats Scissors");
+                    roundDecision.textContent = "You lose! Rock beats Scissors";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "computer";
                 }
                 else if (computerSelection === "paper") {
                     console.log("You win! Scissors beats Paper");
+                    roundDecision.textContent = "You win! Scissors beats Paper";
+                    resultsContainer.appendChild(roundDecision);
                     return winner = "player";
                 }
             }
@@ -109,7 +132,11 @@
         function game() {
             let computerSelection = getComputerChoice();
             console.log("The computer chose: " + computerSelection );
+            computerChoice.textContent = "";
+            computerChoice.textContent += "The computer chose: " + computerSelection;
+            resultsContainer.appendChild(computerChoice);
             if (computerScore != 3 && playerScore != 3){
+                matchResult.textContent = "";
 
                 // playerSelection = prompt ("rock, paper or scissors ?");
                 // if (playerSelection === null) {
@@ -128,21 +155,32 @@
                 if (winner === "player") {
                     playerScore++;
                     console.log ("Player " + playerScore + ":" + computerScore + " Computer");
+                    score.textContent = "You " + playerScore + ":" + computerScore + " Computer";
+                    resultsContainer.appendChild(score);
                 }
                 else if (winner === "computer") {
                     computerScore++;
                     console.log ("Player " + playerScore + ":" + computerScore + " Computer");
+                    score.textContent = "You " + playerScore + ":" + computerScore + " Computer";
+                    resultsContainer.appendChild(score);
                 }
                 else {
                     console.log ("Player " + playerScore + ":" + computerScore + " Computer");
+                    score.textContent = "You " + playerScore + ":" + computerScore + " Computer";
+                    resultsContainer.appendChild(score);
                 }
                  
             if (computerScore === 3 || playerScore === 3) {
                 if (computerScore > playerScore) {
                     console.log ("Computer wins!");
+                    matchResult.textContent = "Computer wins!";
+                    resultsContainer.appendChild(matchResult);
+                    
                 }
                 else {
                     console.log ("Congratulations! You win!");
+                    matchResult.textContent = "Congratulations! You win!";
+                    resultsContainer.appendChild(matchResult);
                 }
                 computerScore = 0;
                 playerScore = 0;
