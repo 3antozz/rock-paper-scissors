@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="antozz">3antozzinho</div>
     <div class="buttons">
         <button class="btn" id="rock">Rock</button>
         <button class="btn" id="paper">Paper</button>
@@ -22,10 +24,15 @@
         const buttons = document.querySelector(".buttons");
         let resultsContainer = document.querySelector(".resultsTxt");
         let playerChoice = document.createElement("div");
+        playerChoice.classList.add("player");
         let computerChoice = document.createElement("div");
+        computerChoice.classList.add("computer");
         let roundDecision = document.createElement("div");
+        roundDecision.classList.add("decision");
         let score = document.createElement("div");
+        score.classList.add("score");
         let matchResult = document.createElement("div");
+        matchResult.classList.add("result");
         score.textContent = "You " + playerScore + ":" + computerScore + " Computer";
         resultsContainer.appendChild(score);
         buttons.addEventListener("click", (event) => {
